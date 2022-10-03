@@ -1,0 +1,52 @@
+unit ClienteController;
+
+interface
+
+uses
+ uCliente, untDMCliente, uDao, System.SysUtils;
+
+type
+ TClienteController = Class
+ public
+   constructor Create;
+   destructor Destroy; override;
+
+   function Insert(Cliente: TCliente; var Erro: String): Boolean;
+   function Update(Cliente: TCliente; var Erro: String): Boolean;
+   function Delete(Id: Integer; var Erro: String): Boolean;
+ End;
+
+implementation
+
+{ TClienteController }
+
+constructor TClienteController.Create;
+begin
+ DMCliente:= TDMCliente.Create(nil);
+end;
+
+destructor TClienteController.Destroy;
+begin
+  if Assigned(DMCliente) then
+    freeAndNil(DMCliente);
+
+  inherited;
+end;
+
+function TClienteController.Insert(Cliente: TCliente; var Erro: String): Boolean;
+begin
+ Result:= DMCliente.Insert(Cliente, Erro);
+end;
+
+function TClienteController.Update(Cliente: TCliente;
+  var Erro: String): Boolean;
+begin
+ Result:= DMCliente.Update(Cliente, Erro);
+end;
+
+function TClienteController.Delete(Id: Integer; var Erro: String): Boolean;
+begin
+ Result:= DMCliente.Delete(Id, Erro);
+end;
+
+end.

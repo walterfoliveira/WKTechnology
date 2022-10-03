@@ -1,0 +1,341 @@
+object fmMain: TfmMain
+  Left = 421
+  Top = 59
+  Caption = 'WK - Projeto avalia'#231#227'o'
+  ClientHeight = 403
+  ClientWidth = 812
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  OnCreate = FormCreate
+  TextHeight = 15
+  object PagA: TPageControl
+    Left = 0
+    Top = 0
+    Width = 812
+    Height = 409
+    ActivePage = TabCrud
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 808
+    object TabCrud: TTabSheet
+      Caption = 'Dados'
+      ImageIndex = 1
+      object lblEdtNome: TLabeledEdit
+        Tag = 1
+        Left = 24
+        Top = 120
+        Width = 281
+        Height = 23
+        CharCase = ecUpperCase
+        EditLabel.Width = 33
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Nome'
+        EditLabel.Color = clWhite
+        EditLabel.ParentColor = False
+        TabOrder = 2
+        Text = ''
+        OnEnter = lblEdtCpfEnter
+        OnExit = lblEdtCpfExit
+      end
+      object lblEdtCpf: TLabeledEdit
+        Left = 24
+        Top = 70
+        Width = 114
+        Height = 23
+        CharCase = ecUpperCase
+        EditLabel.Width = 63
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Documento'
+        EditLabel.Color = clWhite
+        EditLabel.ParentColor = False
+        TabOrder = 0
+        Text = ''
+        OnEnter = lblEdtCpfEnter
+        OnExit = lblEdtCpfExit
+      end
+      object lblEdtSobreNome: TLabeledEdit
+        Tag = 1
+        Left = 24
+        Top = 176
+        Width = 169
+        Height = 23
+        CharCase = ecUpperCase
+        EditLabel.Width = 66
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Sobre Nome'
+        EditLabel.Color = clWhite
+        EditLabel.ParentColor = False
+        TabOrder = 3
+        Text = ''
+        OnEnter = lblEdtCpfEnter
+        OnExit = lblEdtCpfExit
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 342
+        Width = 804
+        Height = 37
+        Align = alBottom
+        Color = clBtnShadow
+        ParentBackground = False
+        TabOrder = 5
+        ExplicitWidth = 800
+        object Label1: TLabel
+          Left = 4
+          Top = 8
+          Width = 109
+          Height = 15
+          Caption = 'Buscar por ID Pessoa'
+        end
+        object btnPut: TButton
+          Left = 282
+          Top = 4
+          Width = 75
+          Height = 25
+          Caption = 'Put'
+          TabOrder = 0
+          OnClick = btnPutClick
+        end
+        object btnPost: TButton
+          Left = 377
+          Top = 4
+          Width = 75
+          Height = 25
+          Caption = 'Post'
+          TabOrder = 1
+          OnClick = btnPostClick
+        end
+        object btnDelete: TButton
+          Left = 473
+          Top = 4
+          Width = 75
+          Height = 25
+          Caption = 'Delete'
+          TabOrder = 2
+          OnClick = btnDeleteClick
+        end
+        object btnGet: TButton
+          Left = 184
+          Top = 4
+          Width = 75
+          Height = 25
+          Caption = 'Get ( Id )'
+          TabOrder = 3
+          OnClick = btnGetClick
+        end
+        object edtFiltro: TEdit
+          Left = 121
+          Top = 4
+          Width = 57
+          Height = 23
+          TabOrder = 4
+          OnEnter = lblEdtCpfEnter
+          OnExit = lblEdtCpfExit
+        end
+      end
+      object lblEdtCep: TLabeledEdit
+        Left = 26
+        Top = 224
+        Width = 89
+        Height = 23
+        CharCase = ecUpperCase
+        EditLabel.Width = 21
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Cep'
+        EditLabel.Color = clWhite
+        EditLabel.ParentColor = False
+        TabOrder = 4
+        Text = ''
+        OnEnter = lblEdtCpfEnter
+        OnExit = lblEdtCpfExit
+      end
+      object rgNatureza: TRadioGroup
+        Left = 154
+        Top = 52
+        Width = 233
+        Height = 41
+        Caption = 'Tipo de Natureza'
+        Columns = 2
+        ItemIndex = 0
+        Items.Strings = (
+          'Pessoa Fisica'
+          'Pessoa Juridica')
+        TabOrder = 1
+      end
+      object btnPutEndereco: TButton
+        Left = 121
+        Top = 223
+        Width = 75
+        Height = 25
+        Caption = 'Atualizar'
+        TabOrder = 6
+        OnClick = btnPutEnderecoClick
+      end
+    end
+    object TabCarro: TTabSheet
+      Caption = 'Importa'#231#227'o'
+      ImageIndex = 2
+      object DBGrid1: TDBGrid
+        Left = 0
+        Top = 49
+        Width = 804
+        Height = 330
+        Align = alClient
+        DataSource = dsArquivoTXT
+        DrawingStyle = gdsClassic
+        FixedColor = 8454016
+        ReadOnly = True
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'id'
+            Title.Caption = 'Cont'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dsnatureza'
+            Title.Caption = 'Natureza'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dsdocumento'
+            Title.Caption = 'Documento'
+            Width = 110
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nmprimeiro'
+            Title.Caption = 'Primeiro Nome'
+            Width = 200
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nmsegundo'
+            Title.Caption = 'Sobrenome'
+            Width = 200
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dscep'
+            Title.Caption = 'Cep'
+            Width = 80
+            Visible = True
+          end>
+      end
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 804
+        Height = 49
+        Align = alTop
+        Color = clBtnShadow
+        ParentBackground = False
+        TabOrder = 1
+        object btnAbrirTXT: TButton
+          Left = 13
+          Top = 13
+          Width = 100
+          Height = 25
+          Caption = 'Abrir TXT'
+          TabOrder = 0
+          OnClick = btnAbrirTXTClick
+        end
+        object btnImportar: TButton
+          Left = 119
+          Top = 13
+          Width = 100
+          Height = 25
+          Caption = 'Importar'
+          TabOrder = 1
+          OnClick = btnImportarClick
+        end
+      end
+    end
+  end
+  object OpenFile: TOpenTextFileDialog
+    Left = 724
+    Top = 34
+  end
+  object cdsArquivoTXT: TClientDataSet
+    PersistDataPacket.Data = {
+      AF0000009619E0BD010000001800000006000000000003000000AF0002696404
+      000100000000000A64736E61747572657A6104000100000000000B6473646F63
+      756D656E746F01004900000001000557494454480200020014000A6E6D707269
+      6D6569726F0100490000000100055749445448020002006400096E6D73656775
+      6E646F0100490000000100055749445448020002006400056473636570010049
+      0000000100055749445448020002000A000000}
+    Active = True
+    Aggregates = <>
+    Params = <>
+    Left = 728
+    Top = 104
+    object cdsArquivoTXTid: TIntegerField
+      FieldName = 'id'
+    end
+    object cdsArquivoTXTdsnatureza: TIntegerField
+      FieldName = 'dsnatureza'
+    end
+    object cdsArquivoTXTdsdocumento: TStringField
+      FieldName = 'dsdocumento'
+    end
+    object cdsArquivoTXTnmprimeiro: TStringField
+      FieldName = 'nmprimeiro'
+      Size = 100
+    end
+    object cdsArquivoTXTnmsegundo: TStringField
+      FieldName = 'nmsegundo'
+      Size = 100
+    end
+    object cdsArquivoTXTdscep: TStringField
+      FieldName = 'dscep'
+      Size = 10
+    end
+  end
+  object dsArquivoTXT: TDataSource
+    DataSet = cdsArquivoTXT
+    Left = 728
+    Top = 168
+  end
+  object RESTClient1: TRESTClient
+    BaseURL = 'http://localhost:8080/datasnap/rest/TSrvServices/pessoas/581'
+    Params = <>
+    SynchronizedEvents = False
+    Left = 464
+    Top = 128
+  end
+  object RESTRequest1: TRESTRequest
+    AssignedValues = [rvConnectTimeout, rvReadTimeout]
+    Client = RESTClient1
+    Params = <
+      item
+        Kind = pkREQUESTBODY
+        Name = 'body37819A42EF454F0A998740833C9230F5'
+        Value = ' {'#13#10'         "idpessoa": 1,'#13#10'        "dscep": "09431300"'#13#10'}'
+        ContentTypeStr = 'application/json'
+      end>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 464
+    Top = 192
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 464
+    Top = 256
+  end
+end

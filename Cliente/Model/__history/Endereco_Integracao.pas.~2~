@@ -1,0 +1,11 @@
+unit Endereco_Integracao;
+
+interface
+
+type
+ TEndereco_Integracao = Class
+
+ End;
+implementation
+
+end.

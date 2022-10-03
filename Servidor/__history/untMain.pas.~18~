@@ -1,0 +1,230 @@
+unit untMain;
+
+interface
+
+uses
+  Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, IdGlobal, Web.HTTPApp;
+
+type
+  TfmMain = class(TForm)
+    ButtonStart: TButton;
+    ButtonStop: TButton;
+    EditPort: TEdit;
+    Label1: TLabel;
+    ApplicationEvents1: TApplicationEvents;
+    ButtonOpenBrowser: TButton;
+    Button1: TButton;
+    Memo1: TMemo;
+    procedure FormCreate(Sender: TObject);
+    procedure ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
+    procedure ButtonStartClick(Sender: TObject);
+    procedure ButtonStopClick(Sender: TObject);
+    procedure ButtonOpenBrowserClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    FServer: TIdHTTPWebBrokerBridge;
+    procedure StartServer;
+    { Private declarations }
+
+    procedure AddMemo(const Conteudo: string);
+    function BuscarCEP_ViaCEP(Cep: string): TStringList;
+  public
+    { Public declarations }
+  end;
+
+var
+  fmMain: TfmMain;
+
+implementation
+
+{$R *.dfm}
+
+uses
+{$IFDEF MSWINDOWS}
+  WinApi.Windows, Winapi.ShellApi,
+{$ENDIF}
+  System.Json,
+  System.Threading,
+  Datasnap.DSSession,
+  System.Generics.Collections;
+
+procedure TfmMain.ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
+begin
+  ButtonStart.Enabled := not FServer.Active;
+  ButtonStop.Enabled := FServer.Active;
+  EditPort.Enabled := not FServer.Active;
+end;
+
+procedure TfmMain.AddMemo(const Conteudo: string);
+begin
+  TThread.Queue(nil,
+    procedure
+    begin
+      Memo1.Lines.Add(Conteudo);
+      Memo1.Lines.Add('');
+    end);
+end;
+
+
+function TfmMain.BuscarCEP_ViaCEP(Cep: string): TStringList;
+var
+  Task: ITask;
+  respTask: TStringList;
+begin
+  respTask:= TStringList.Create;
+
+  TTask.Run(
+    procedure
+    var
+      I: Integer;
+      Data: TJSONObject;
+      Endereco: TStringList;
+   begin
+
+      for I := 0 to 1000 do
+      begin
+        Endereco := TStringList.Create;
+        Endereco.Add(Trim(UpperCase('Rua Lima barreto')));
+        Endereco.Add(Trim(UpperCase('Santa terezinha')));
+        Endereco.Add(Trim(UpperCase('SP')));
+        Endereco.Add(Trim(UpperCase('Sao Bernardo do campo')));
+        Endereco.Add(Trim(UpperCase('ABC Paulista')));
+
+        respTask:= Endereco;
+        AddMemo(respTask.Text);
+      end;
+
+//      TThread.Synchronize(nil,
+//        procedure
+//
+//        begin
+//          Memo1.Lines.Add(BuscarCEP_ViaCEP('09780340'));
+//          Memo1.Lines.Add('');
+//        end);
+
+
+
+//      RESTClient1 := TRESTClient.Create(nil);
+//      RESTRequest1 := TRESTRequest.Create(nil);
+//      RESTResponse1 := TRESTResponse.Create(nil);
+//      RESTRequest1.Client := RESTClient1;
+//      RESTRequest1.Response := RESTResponse1;
+//      RESTClient1.BaseURL := 'https://viacep.com.br/ws/' + Cep + '/json';
+//      RESTRequest1.Execute;
+//      Data := RESTResponse1.JSONValue as TJSONObject;
+//      try
+//        Endereco := TStringList.Create;
+//        if Assigned(Data) then
+//        begin
+//          try
+//            Endereco.Add(Trim(UpperCase(Data.Values['logradouro'].Value)));
+//          except
+//            on Exception do
+//              Endereco.Add('');
+//          end;
+//          try
+//            Endereco.Add(Trim(UpperCase(Data.Values['bairro'].Value)));
+//          except
+//            on Exception do
+//              Endereco.Add('');
+//          end;
+//          try
+//            Endereco.Add(Trim(UpperCase(Data.Values['uf'].Value)));
+//          except
+//            on Exception do
+//              Endereco.Add('');
+//          end;
+//          try
+//            Endereco.Add(Trim(UpperCase(Data.Values['localidade'].Value)));
+//          except
+//            on Exception do
+//              Endereco.Add('');
+//          end;
+//          try
+//            Endereco.Add(Trim(UpperCase(Data.Values['complemento'].Value)));
+//          except
+//            on Exception do
+//              Endereco.Add('');
+//          end;
+//        end;
+//
+//        respTask:= Endereco;
+//
+//      finally
+//        //FreeAndNil(Data);
+//      end;
+end);
+
+//
+//Task.Start;
+//TTask.WaitForAll(Task);
+
+Result:= respTask;
+
+end;
+
+
+
+
+procedure TfmMain.Button1Click(Sender: TObject);
+var
+  I: Integer;
+begin
+Memo1.Lines.Clear;
+for I := 0 to 1000 do
+begin
+ BuscarCEP_ViaCEP('09780340');
+end;
+end;
+
+procedure TfmMain.ButtonOpenBrowserClick(Sender: TObject);
+{$IFDEF MSWINDOWS}
+var
+  LURL: string;
+{$ENDIF}
+begin
+  StartServer;
+{$IFDEF MSWINDOWS}
+  LURL := Format('http://localhost:%s', [EditPort.Text]);
+  ShellExecute(0,
+        nil,
+        PChar(LURL), nil, nil, SW_SHOWNOACTIVATE);
+{$ENDIF}
+end;
+
+procedure TfmMain.ButtonStartClick(Sender: TObject);
+begin
+  StartServer;
+end;
+
+procedure TerminateThreads;
+begin
+  if TDSSessionManager.Instance <> nil then
+    TDSSessionManager.Instance.TerminateAllSessions;
+end;
+
+procedure TfmMain.ButtonStopClick(Sender: TObject);
+begin
+  TerminateThreads;
+  FServer.Active := False;
+  FServer.Bindings.Clear;
+end;
+
+procedure TfmMain.FormCreate(Sender: TObject);
+begin
+  FServer := TIdHTTPWebBrokerBridge.Create(Self);
+end;
+
+procedure TfmMain.StartServer;
+begin
+  if not FServer.Active then
+  begin
+    FServer.Bindings.Clear;
+    FServer.DefaultPort := StrToInt(EditPort.Text);
+    FServer.Active := True;
+  end;
+end;
+
+end.

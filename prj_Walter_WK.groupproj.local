@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/09/29 19:55:31.000.546,C:\Users\Valiant\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj=D:\Projetos\Delphi\WKTechnology\Servidor\prjWK.groupproj</Transaction>
+    <Transaction>2022/09/29 19:56:19.000.571,D:\Projetos\Delphi\WKTechnology\Servidor\prjWK.groupproj=D:\Projetos\Delphi\WKTechnology\prjWK.groupproj</Transaction>
+    <Transaction>2022/09/30 08:10:43.000.471,D:\Projetos\Delphi\WKTechnology\prjWK.groupproj=D:\Projetos\Delphi\WKTechnology\prj_Walter_WK.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="D:\Projetos\Delphi\WKTechnology\Cliente\Cliente.dproj"/>
+	</Default.Personality>
+</BorlandProject>

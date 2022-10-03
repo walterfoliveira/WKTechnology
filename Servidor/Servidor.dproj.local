@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/09/29 19:46:48.000.786,=D:\Projetos\Delphi\WKTechnology\Servidor\FormUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.302,=D:\Projetos\Delphi\WKTechnology\Servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.635,=D:\Projetos\Delphi\WKTechnology\Servidor\js\json2.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.837,=D:\Projetos\Delphi\WKTechnology\Servidor\js\callbackframework-min.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.809,=D:\Projetos\Delphi\WKTechnology\Servidor\js\serverfunctionexecutor-min.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.083,=D:\Projetos\Delphi\WKTechnology\Servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.476,=D:\Projetos\Delphi\WKTechnology\Servidor\WebModuleUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.783,=D:\Projetos\Delphi\WKTechnology\Servidor\js\json2-min.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.712,=D:\Projetos\Delphi\WKTechnology\Servidor\js\serverfunctions.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.582,=D:\Projetos\Delphi\WKTechnology\Servidor\js\base64.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.735,=D:\Projetos\Delphi\WKTechnology\Servidor\js\base64-min.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.616,=D:\Projetos\Delphi\WKTechnology\Servidor\js\serverfunctionexecutor.js</Transaction>
+    <Transaction>2022/09/29 19:46:49.000.688,=D:\Projetos\Delphi\WKTechnology\Servidor\js\callbackframework.js</Transaction>
+    <Transaction>2022/09/29 19:47:48.000.349,D:\Projetos\Delphi\WKTechnology\Servidor\untMain.dfm=D:\Projetos\Delphi\WKTechnology\Servidor\FormUnit1.dfm</Transaction>
+    <Transaction>2022/09/29 19:47:48.000.349,D:\Projetos\Delphi\WKTechnology\Servidor\untMain.pas=D:\Projetos\Delphi\WKTechnology\Servidor\FormUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:49:04.000.251,D:\Projetos\Delphi\WKTechnology\Servidor\srvServices.dfm=D:\Projetos\Delphi\WKTechnology\Servidor\ServerMethodsUnit1.dfm</Transaction>
+    <Transaction>2022/09/29 19:49:04.000.251,D:\Projetos\Delphi\WKTechnology\Servidor\srvServices.pas=D:\Projetos\Delphi\WKTechnology\Servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:51:35.000.780,D:\Projetos\Delphi\WKTechnology\Servidor\untSrvServices.pas=D:\Projetos\Delphi\WKTechnology\Servidor\srvServices.pas</Transaction>
+    <Transaction>2022/09/29 19:51:35.000.780,D:\Projetos\Delphi\WKTechnology\Servidor\untSrvServices.dfm=D:\Projetos\Delphi\WKTechnology\Servidor\srvServices.dfm</Transaction>
+    <Transaction>2022/09/29 19:54:00.000.095,D:\Projetos\Delphi\WKTechnology\Servidor\untDM.dfm=D:\Projetos\Delphi\WKTechnology\Servidor\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2022/09/29 19:54:00.000.095,D:\Projetos\Delphi\WKTechnology\Servidor\untDM.pas=D:\Projetos\Delphi\WKTechnology\Servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:54:54.000.058,D:\Projetos\Delphi\WKTechnology\Servidor\untDMW.pas=D:\Projetos\Delphi\WKTechnology\Servidor\WebModuleUnit1.pas</Transaction>
+    <Transaction>2022/09/29 19:54:54.000.058,D:\Projetos\Delphi\WKTechnology\Servidor\untDMW.dfm=D:\Projetos\Delphi\WKTechnology\Servidor\WebModuleUnit1.dfm</Transaction>
+    <Transaction>2022/09/29 20:19:25.000.358,=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/09/29 20:22:01.000.542,D:\Projetos\Delphi\WKTechnology\Servidor\Model\Pessoa.pas=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/09/30 07:01:36.000.983,=D:\Projetos\Delphi\WKTechnology\Servidor\uDao.pas</Transaction>
+    <Transaction>2022/09/30 11:39:27.000.918,=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/09/30 11:39:43.000.879,D:\Projetos\Delphi\WKTechnology\Servidor\Model\Endereco.pas=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/09/30 11:44:32.000.169,=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/09/30 11:44:51.000.142,D:\Projetos\Delphi\WKTechnology\Servidor\Model\Endereco_Integracao.pas=D:\Projetos\Delphi\WKTechnology\Servidor\Unit1.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="js"/>
+    <File Path="js\base64-min.js"/>
+    <File Path="js\base64.js"/>
+    <File Path="js\callbackframework-min.js"/>
+    <File Path="js\callbackframework.js"/>
+    <File Path="js\json2-min.js"/>
+    <File Path="js\json2.js"/>
+    <File Path="js\serverfunctionexecutor-min.js"/>
+    <File Path="js\serverfunctionexecutor.js"/>
+    <File Path="js\serverfunctions.js"/>
+    <File Path="Model"/>
+    <File Path="Model\Pessoa.pas"/>
+    <File Path="Model\Endereco.pas"/>
+    <File Path="Model\Endereco_Integracao.pas"/>
+    <File Path="untDM.pas"/>
+    <File Path="untDM.dfm"/>
+    <File Path="untDMW.pas"/>
+    <File Path="untDMW.dfm"/>
+    <File Path="untMain.pas"/>
+    <File Path="untMain.dfm"/>
+    <File Path="untSrvServices.pas"/>
+    <File Path="untSrvServices.dfm"/>
+    <File Path="uDao.pas"/>
+  </ProjectSortOrder>
+</BorlandProject>

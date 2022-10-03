@@ -1,0 +1,125 @@
+unit uDao;
+
+interface
+uses
+  FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.PG,
+  FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Phys.MSSQL,
+  FireDAC.Comp.Client;
+type
+  TDao = class
+  private
+    FStoredProc: TFDStoredProc;
+
+    FConnection: TFDConnection;
+    FDTransaction: TFDTransaction;
+    FQuery: TFDQuery;
+    FQuery2: TFDQuery;
+
+    FDriver: TFDPhysPgDriverLink;
+
+    procedure SetConnection(const Value: TFDConnection);
+    procedure SetQuery(const Value: TFDQuery);
+    procedure SetStoredProc(const Value: TFDStoredProc);
+    Function GetStoredProc: TFDStoredProc;
+    procedure SetQuery2(const Value: TFDQuery);
+  Public
+    Constructor Create();
+    Destructor Destroy; Override;
+    Property Connection: TFDConnection read FConnection write SetConnection;
+    Property Query: TFDQuery read FQuery write SetQuery;
+    Property Query2: TFDQuery read FQuery2 write SetQuery2;
+    Property StoredProc: TFDStoredProc read GetStoredProc write SetStoredProc;
+    Procedure ClearQuery;
+    Procedure ClearQuery2;
+  end;
+implementation
+
+uses
+  System.SysUtils;
+
+{ TDao }
+procedure TDao.ClearQuery;
+begin
+  FQuery.Close;
+  FQuery.SQL.Clear;
+end;
+
+procedure TDao.ClearQuery2;
+begin
+  FQuery2.Close;
+  FQuery2.SQL.Clear;
+end;
+
+constructor TDao.Create();
+begin
+
+    FConnection  :=  TFDConnection.Create(nil);
+
+    FConnection.Params.DriverID := 'PG';
+    FConnection.LoginPrompt  :=  false;
+
+    FConnection.Params.Values['Port'] := '5432';
+    FConnection.Params.Values['Server']:=  'localhost';
+    FConnection.Params.Values['User_Name']:=  'postgres';
+    FConnection.Params.Values['Password']:= '2022';
+
+    FConnection.Params.Database :=  'walter';
+    FConnection.Params.UserName :=  'postgres';
+    FConnection.Params.Password :=  '2022';
+
+    FDriver :=  TFDPhysPgDriverLink.Create(FConnection);
+    FDTransaction:= TFDTransaction.Create(FConnection);
+    FConnection.Transaction:= FDTransaction;
+
+    try
+
+     FConnection.Connected  :=  true;
+
+    except on E: Exception do
+      begin
+        raise Exception.Create('Erro ao conectar:' + #13 + E.Message )
+      end;
+    end;
+end;
+
+destructor TDao.Destroy;
+begin
+  FreeAndNil(FQuery);
+  FreeAndNil(FQuery2);
+  if Assigned(FStoredProc) then
+    FreeAndNil(FStoredProc);
+  FreeAndNil(FDriver);
+  FreeAndNil(FConnection);
+  inherited;
+end;
+
+function TDao.GetStoredProc: TFDStoredProc;
+begin
+  if not Assigned(FStoredProc) then
+  Begin
+    FStoredProc :=  TFDStoredProc.Create(FConnection);
+    FStoredProc.Connection  :=  FConnection;
+  End;
+  Result  :=  FStoredProc;
+end;
+
+procedure TDao.SetConnection(const Value: TFDConnection);
+begin
+  FConnection := Value;
+end;
+procedure TDao.SetQuery(const Value: TFDQuery);
+begin
+  FQuery := Value;
+end;
+procedure TDao.SetQuery2(const Value: TFDQuery);
+begin
+  FQuery2 := Value;
+end;
+procedure TDao.SetStoredProc(const Value: TFDStoredProc);
+begin
+  FStoredProc := Value;
+end;
+end.
